@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shortener</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">        
+    <style>
+        /* centering the content */
+        body{
+            display: grid;
+            place-items: center;
+            font-family: 'Montserrat';
+            background: #ececec;
+        }
+        /* styling the input */
+        form input{
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid #009879;
+            background-color: #e4e4e4;
+            color: #009879;
+            padding: 10px;
+            font-size: 18px;
+            width: 70%;
+        }
+        label{
+            font-weight: bold;
+        }
+
+        /* styling the button */
+        button{
+            border-radius: 5px;
+            border: 1px solid #34073d;
+            cursor: pointer;
+            transition: .5s;
+            background-color: #009879;
+            color: #f3f3f3;
+            font-weight: bold;
+            border: none;
+            width: 60px;
+            height: 45px;
+            top: 0;
+            right: 0;
+            padding-top: 3px;   
+        }
+
+        button:hover{
+            background-color: #f3f3f3;
+            color: #009879;
+            border: 2px solid #009879;
+        }
+
+        /* styling the links */
+        a{
+            text-decoration: none;
+        }
+
+        a:hover{
+            color: #00987abb;
+        }
+
+        /* styling the table */
+        .content-table{
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .content-table thead tr{
+            background-color: #009879;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+        }
+        .content-table th,
+        .content-table td{
+            padding: 12px 15px;
+        }
+        .content-table tbody tr{
+            border-bottom: 1px solid #dddd;
+        }
+        .content-table tbody tr:nth-of-type(even){
+            background-color: #f3f3f3;
+        }
+        .content-table tbody tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tbody tr.active-row{
+            font-weight: bold;
+            color: #009879;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>
+        Url Shrinker
+    </h1>
+    <form action="/shortUrls" method="POST">
+        <label for="fullUrl">Your URL:</label><br>
+        <input type="url" name="fullUrl" id="fullUrl" placeholder="Write Your Link">
+        <button type="submit">Shrink</button>
+    </form>
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Full Url</th>
+                <th>Short Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% shortUrls.forEach(shortUrl => { %>
+                <tr class="active-row">
+                    <td><a href=" <%= shortUrl.full %> "> <%= shortUrl.full %> </a></td>
+                    <td><a href=" <%= shortUrl.short %> "> <%= shortUrl.short %> </a></td>
+                </tr>
+                
+        <% })%>    
+    </tbody> 
+    </table>
+</body>
+</html>
